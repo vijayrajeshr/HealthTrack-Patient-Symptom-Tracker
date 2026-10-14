@@ -16,6 +16,7 @@ htmlcov/
 
 # App data
 data/*.json
+!data/symptoms.json
 !data/.gitkeep
 *.corrupt
 *.tmp
