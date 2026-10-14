@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About — HealthTrack</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="top">
+    <div class="brand-group">
+      <h1><a href="/" class="brand-link">HealthTrack</a></h1>
+      <nav class="nav-links" aria-label="Main Navigation">
+        <a href="/" class="nav-link">Tracker</a>
+        <a href="/about" class="nav-link active">About</a>
+      </nav>
+    </div>
+    <a href="/" class="btn-back">&larr; Back to Tracker</a>
+  </header>
+
+  <main class="about-container">
+    <!-- Hero Header -->
+    <header class="about-hero">
+      <span class="pill-tag">System Overview & Architecture</span>
+      <h2 class="about-title">Empowering Patients Through Continuous Health Insights</h2>
+      <p class="about-lead">
+        HealthTrack is a lightweight, responsive health-tech web application designed to help patients monitor daily symptoms, discover health patterns over time, and visualize weekly health trajectories.
+      </p>
+    </header>
+
+    <!-- Content Grid -->
+    <div class="about-grid">
+      <!-- Card 1: What is this -->
+      <section class="panel about-card">
+        <div class="card-icon">🩺</div>
+        <h3>What is HealthTrack?</h3>
+        <p>
+          HealthTrack enables individuals to keep track of subjective physical experiences—from mild migraines to persistent fatigue—without the overhead of bloated enterprise platforms. It prioritizes simplicity, instant client responsiveness, and clear visual summaries to foster meaningful discussions between patients and clinicians.
+        </p>
+        <ul class="feature-bullets">
+          <li><strong>Granular Logging:</strong> 10-point color-calibrated severity scale from subtle discomfort to severe pain.</li>
+          <li><strong>Intelligent Autocomplete:</strong> Remembers your past entries for instant reuse and consistency.</li>
+          <li><strong>Longitudinal Filtering:</strong> Real-time date range filters to zoom into specific episodes or treatment windows.</li>
+        </ul>
+      </section>
+
+      <!-- Card 2: How this works -->
+      <section class="panel about-card">
+        <div class="card-icon">⚙️</div>
+        <h3>How It Works Behind the Scenes</h3>
+        <p>
+          HealthTrack is engineered following strict architectural separation of concerns:
+        </p>
+        <div class="workflow-steps">
+          <div class="step-item">
+            <span class="step-num">01</span>
+            <div>
+              <h4>Input Normalization & Validation</h4>
+              <p>Every submission is validated using pure functions. Symptom descriptions are trimmed, whitespace-collapsed, and lowercase-normalized. All validation errors are returned simultaneously for field-level feedback.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <span class="step-num">02</span>
+            <div>
+              <h4>Resilient Atomic Storage</h4>
+              <p>Records are persisted to disk using a thread-safe JSON repository. Writes use atomic temporary file swaps (<code>os.replace</code>) guarded by thread locks, ensuring zero corruption during crashes or concurrent calls. An automatic corrupt-file recovery mechanism safeguards uptime.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <span class="step-num">03</span>
+            <div>
+              <h4>Pure Insights Aggregation</h4>
+              <p>Without heavy AI overhead or predictive guesswork, an internal engine groups records by ISO-8601 calendar weeks (starting on Monday), surfaces top symptoms with deterministic tie-breaking, identifies peak severity, and reports week-over-week trends.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Developer & Candidate Card -->
+    <section class="panel profile-card">
+      <div class="profile-header">
+        <div class="avatar-glow">VR</div>
+        <div>
+          <span class="profile-role">Designed & Developed by</span>
+          <h3 class="profile-name">Vijay Rajesh R</h3>
+          <p class="profile-bio">Full-Stack Engineer & AI/ML Practitioner passionate about building resilient systems, intuitive interfaces, and high-performance software.</p>
+        </div>
+      </div>
+
+      <div class="social-links">
+        <a href="https://github.com/vijayrajeshr" target="_blank" rel="noopener noreferrer" class="social-btn">
+          <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          <span>GitHub</span>
+        </a>
+
+        <a href="https://www.linkedin.com/in/vijayrajeshr" target="_blank" rel="noopener noreferrer" class="social-btn">
+          <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+          </svg>
+          <span>LinkedIn</span>
+        </a>
+
+        <a href="https://vijayrajeshr.vercel.app/" target="_blank" rel="noopener noreferrer" class="social-btn highlight">
+          <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="2" y1="12" x2="22" y2="12"></line>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+          </svg>
+          <span>Portfolio Website</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Assessment Banner Mention -->
+    <div class="assessment-banner">
+      <div class="assessment-content">
+        <span class="assessment-badge">Evaluation & Context</span>
+        <p class="assessment-text">
+          This project was built as a solution for the <strong>Take-Home Assessment for Aiden AI</strong> (Python · AIML · GenAI). It demonstrates modular software design, pure business logic, full test automation (45 passing tests), resilient file persistence, and accessible frontend aesthetics.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    HealthTrack &bull; Built with precision for the Aiden AI Assessment &bull; &copy; 2026 Vijay Rajesh R
+  </footer>
+</body>
+</html>

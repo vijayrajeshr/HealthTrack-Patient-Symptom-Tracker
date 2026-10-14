@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HealthTrack</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="top">
+    <div class="brand-group">
+      <h1><a href="/" class="brand-link">HealthTrack</a></h1>
+      <nav class="nav-links" aria-label="Main Navigation">
+        <a href="/" class="nav-link active">Tracker</a>
+        <a href="/about" class="nav-link">About</a>
+      </nav>
+    </div>
+    <label class="who">Tracking for
+      <input id="user" value="demo" maxlength="40" aria-label="User ID" spellcheck="false">
+    </label>
+  </header>
+
+  <main>
+    <section class="panel log" aria-labelledby="log-h">
+      <h2 id="log-h">How are you feeling?</h2>
+      <form id="form" novalidate>
+        <div class="field">
+          <label for="symptom">Symptom</label>
+          <input id="symptom" list="known" maxlength="80" placeholder="e.g. headache" autocomplete="off">
+          <datalist id="known"></datalist>
+          <p class="err" data-for="symptom"></p>
+        </div>
+        <div class="field">
+          <label id="sev-label">Severity</label>
+          <div class="scale" id="scale" role="radiogroup" aria-labelledby="sev-label"></div>
+          <p class="scale-hint" id="scale-hint">Pick 1 (barely there) to 10 (worst).</p>
+          <p class="err" data-for="severity"></p>
+        </div>
+        <div class="field">
+          <label for="date">Date</label>
+          <input id="date" type="date">
+          <p class="err" data-for="date"></p>
+        </div>
+        <p class="err" id="form-err"></p>
+        <button class="primary" type="submit">Save entry</button>
+      </form>
+    </section>
+
+    <section class="stack">
+      <div class="panel filters">
+        <label>From <input type="date" id="start"></label>
+        <label>To <input type="date" id="end"></label>
+        <button id="clear" class="ghost" type="button">Clear dates</button>
+        <p class="err" id="range-err"></p>
+      </div>
+
+      <section class="panel" aria-labelledby="ins-h">
+        <h2 id="ins-h">Insights</h2>
+        <div id="insights"></div>
+      </section>
+
+      <section class="panel" aria-labelledby="ent-h">
+        <h2 id="ent-h">Entries <span id="count" class="muted"></span></h2>
+        <ul id="entries" class="entries"></ul>
+      </section>
+    </section>
+  </main>
+
+  <footer>HealthTrack helps you notice patterns. It isn't medical advice, so talk to a clinician about anything that worries you.</footer>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
