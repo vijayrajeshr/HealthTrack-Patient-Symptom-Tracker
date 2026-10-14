@@ -120,7 +120,7 @@ HealthTrack-Patient-Symptom-Tracker/
 ├── requirements.txt         # Minimal production & testing dependencies (Flask, pytest)
 ├── run.py                   # Development entrypoint
 ├── README.md                # Comprehensive documentation
-└── .gitignore               # Ignores .venv, cache, data/*.json, *.corrupt
+└── .gitignore               # Ignores .venv, cache, data/*.json, *.corrupt, *.tmp, .env
 ```
 
 ---
@@ -143,6 +143,8 @@ HealthTrack-Patient-Symptom-Tracker/
    * Calculates rolling two-week trends (changes $\ge 0.5$ indicate `improving` or `worsening`, otherwise `steady`).
 7. **Zero-Build Vanilla Frontend:**
    Uses native HTML5, CSS3, and JavaScript with no npm build step or bundler overhead. Includes accessible radio controls (`role="radiogroup"`), keyboard navigation, dynamic autocomplete, and toast alerts.
+8. **Defensive Frontend Security:**
+   Client-side rendering leverages pure DOM node creation with `textContent` binding for free-form user symptom inputs (such as peak entry card, entry rows, and autocomplete datalist) paired with HTML entity escaping (`escapeHtml`), safeguarding against Stored Cross-Site Scripting (XSS).
 
 ---
 
@@ -175,6 +177,7 @@ Per the assessment guidelines, here is a transparent disclosure of AI tool usage
   * Verified all edge cases: boundary checks for severity (blocking `True`/`False`, decimals, negative numbers, and `> 10`).
   * Enforced date rules ensuring future dates are strictly rejected.
   * Verified the atomic file swap implementation (`os.replace`) and corrupt file recovery logic by writing invalid JSON directly to disk.
+  * Hardened client-side DOM rendering against Stored XSS via strict `textContent` binding and HTML entity escaping.
   * Added the About page with candidate portfolio links and Aiden AI assessment accreditation.
   * Confirmed 100% test pass rate locally across all 46 tests.
 
