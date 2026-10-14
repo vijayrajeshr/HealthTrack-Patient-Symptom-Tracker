@@ -18,6 +18,16 @@ htmlcov/
 data/*.json
 !data/.gitkeep
 *.corrupt
+*.tmp
+data/*.tmp
+
+# Environment & Secrets
+.env
+.flaskenv
+*.env
+
+# Local notes
+DEMO_GUIDE.md
 
 # IDE & OS
 .vscode/

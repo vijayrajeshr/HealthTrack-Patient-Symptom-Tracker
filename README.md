@@ -35,7 +35,8 @@ Built for the **Aiden AI Take-Home Assessment** (Python · AIML · GenAI).
 ### 2. Setup & Run
 ```bash
 # Clone the repository and navigate into the project
-cd TakeHomeAssessment
+git clone https://github.com/vijayrajeshr/HealthTrack-Patient-Symptom-Tracker.git
+cd HealthTrack-Patient-Symptom-Tracker
 
 # Create and activate virtual environment
 python -m venv .venv
@@ -92,7 +93,7 @@ All API responses are formatted as JSON. Errors always follow a consistent struc
 ## Project Structure
 
 ```
-TakeHomeAssessment/
+HealthTrack-Patient-Symptom-Tracker/
 ├── app/
 │   ├── __init__.py          # Flask app factory, route handlers, JSON error handlers
 │   ├── validation.py        # Pure functions for input validation and normalization
@@ -177,19 +178,3 @@ Per the assessment guidelines, here is a transparent disclosure of AI tool usage
   * Added the About page with candidate portfolio links and Aiden AI assessment accreditation.
   * Confirmed 100% test pass rate locally across all 46 tests.
 
----
-
-## Video Demo Walkthrough Guide (Max 8 Minutes)
-
-When recording your narrated video demo with webcam on, use this 7-step checklist:
-
-| Timestamp | Section | Talking Points & Actions |
-|---|---|---|
-| **0:00 - 1:00** | **Introduction** | State your name (Vijay Rajesh R), introduce HealthTrack, and highlight the clean project structure (`app/`, `tests/`, `data/`). |
-| **1:00 - 2:00** | **Run & Demo Seed** | Show terminal: activate `.venv`, run `python run.py`, run `python scripts/seed_demo.py demo`. Open `http://127.0.0.1:5000`. |
-| **2:00 - 3:30** | **Symptom Logging & UI** | Log a symptom (e.g. `migraine`, severity `7`, today's date). Show it appear in Entries and immediately update the Insights section. |
-| **3:30 - 4:30** | **Validation & Error Handling** | Demonstrate error handling: try submitting an empty symptom, severity without selection, or a future date. Point out the simultaneous field-level error messages. |
-| **4:30 - 5:30** | **Filtering & Insights** | Use the "From" and "To" date range pickers to filter entries. Highlight the Weekly Average Severity bars, Top Symptoms frequency, and the 2-week Trend indicator. |
-| **5:30 - 6:30** | **Test Suite Execution** | Switch to terminal and run `pytest -v`. Show all 46 tests passing rapidly. Mention storage atomic writes, concurrency locks, and corrupt-file recovery. |
-| **6:30 - 7:30** | **About Page & Decisions** | Click into the **About** page (`/about`). Show the system architecture breakdown, developer profile card, and explain key design decisions (Repository pattern, zero-build simplicity). |
-| **7:30 - 8:00** | **Wrap Up** | Conclude by referencing the AI Usage section in the README and expressing enthusiasm for the role at Aiden AI. |

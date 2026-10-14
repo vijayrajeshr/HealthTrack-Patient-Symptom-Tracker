@@ -57,6 +57,17 @@
     return `${year}-${month}-${day}`;
   }
 
+  // Escape HTML entities to prevent XSS
+  function escapeHtml(str) {
+    if (str === null || str === undefined) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+
   // Toast notification
   function showToast(message, type = 'success') {
     if (toastTimer) clearTimeout(toastTimer);
@@ -254,10 +265,26 @@
     kpiPeak.className = 'kpi-card';
     if (insights.highest_entry) {
       const peakColor = severityColors[insights.highest_entry.severity] || '#6366f1';
-      kpiPeak.innerHTML = `
-        <span class="kpi-label">Peak Entry</span>
-        <span class="kpi-val" style="color:${peakColor}">${insights.highest_entry.severity}<span style="font-size:0.8rem;font-weight:500;text-transform:capitalize;color:var(--text-muted);margin-left:0.35rem">(${insights.highest_entry.symptom})</span></span>
-      `;
+      const labelSpan = document.createElement('span');
+      labelSpan.className = 'kpi-label';
+      labelSpan.textContent = 'Peak Entry';
+
+      const valSpan = document.createElement('span');
+      valSpan.className = 'kpi-val';
+      valSpan.style.color = peakColor;
+      valSpan.textContent = `${insights.highest_entry.severity}`;
+
+      const symSpan = document.createElement('span');
+      symSpan.style.fontSize = '0.8rem';
+      symSpan.style.fontWeight = '500';
+      symSpan.style.textTransform = 'capitalize';
+      symSpan.style.color = 'var(--text-muted)';
+      symSpan.style.marginLeft = '0.35rem';
+      symSpan.textContent = `(${insights.highest_entry.symptom})`;
+
+      valSpan.appendChild(symSpan);
+      kpiPeak.appendChild(labelSpan);
+      kpiPeak.appendChild(valSpan);
     } else {
       kpiPeak.innerHTML = `<span class="kpi-label">Peak Entry</span><span class="kpi-val">-</span>`;
     }
